@@ -25,7 +25,6 @@ class Summary:
 
     def add_summary(self, summary):
         for key in summary.values:
-#            print key
             bucket = self.values.get(key, 0)
             bucket += summary.values[key]
             self.values[key] = bucket
@@ -59,7 +58,6 @@ class Summary:
         mu = self.mean()
         s = 0
         for value, count in self.values.items():
-#            print value, count
             s += ((value-mu)**2)*count
         return float(s)/(self.count-1)
 
@@ -122,13 +120,11 @@ class ResultsSummarizer(object):
         return summary_dict
 
     def summarize_basho_bench_latency(self, filename):
-        #print filename
         count = 0
 
         summary_dict = self._create_latency_summary_dict()
         with open(filename, 'rb') as summary_file:
             reader = csv.reader(summary_file)
-            #skip header
             reader.next()
 
             for row in reader:
@@ -136,7 +132,6 @@ class ResultsSummarizer(object):
                 vals = map(float, row)
                 elapsed, window, n, min, mean, median, nine5, nine9, nine9_9, max, errors = vals[:11]
                 summary_dict['elapsed'].add(elapsed)
-#                window_sum.add(window)
                 summary_dict['n'].add(n)
                 summary_dict['min'].add(min/1000)
                 summary_dict['mean'].add(mean/1000)
@@ -152,14 +147,12 @@ class ResultsSummarizer(object):
 
 
     def summarize_basho_bench_summary(self, filename):
-        #print filename
         count = 0
         min = 999999
         max = -1
         avg_agg = 0
         with open(filename, 'rb') as summary_file:
             reader = csv.reader(summary_file)
-            #skip header_file
             reader.next()
 
             for row in reader:
@@ -174,7 +167,6 @@ class ResultsSummarizer(object):
 
     def summarize_basho_bench_results(self, path):
         latency_wc = '*latencies.csv'
-#        summary_fn = 'summary.csv'
         full_path = path + os.path.sep + latency_wc
         files = glob.glob(full_path)
 
@@ -211,10 +203,9 @@ class ResultsSummarizer(object):
 
             aggregated_stats[filename] = stat
             path, filename = os.path.split(filename)
-            ind = path.rfind('-')
+            ind = path.rfind('tag_')
             group_path = path[:ind]
             agg_stat = aggregated_stats.get(group_path, self._create_latency_summary_dict())
-            #print 'agg_stat:', agg_stat
             agg_stat = self._add_summary_dicts(agg_stat, stat)
             aggregated_stats[group_path] = agg_stat
 
@@ -222,7 +213,6 @@ class ResultsSummarizer(object):
 
     def calculate_results(self, summary_stats):
         for filename, summary_stat in summary_stats.items():
-            #print 'summary stat:', filename, summary_stat
             stat = {}
             stat['filename'] = filename
             stat['elapsed'] = summary_stat['elapsed'].max()
@@ -238,7 +228,6 @@ class ResultsSummarizer(object):
             stat['errors'] = summary_stat['errors'].sum_values()
             stat['mean_ops/sec'] = summary_stat['ops/sec'].mean()
             stat['mean_ops/sec_std_dev'] = summary_stat['ops/sec'].stdev()
-#            print 'stat:', stat
             yield stat
 
 
@@ -247,8 +236,15 @@ class ResultsSummarizer(object):
             dict1[field].add_summary(dict2[field])
         return dict1
 
-    def print_stats(self, stats):
-        key_order = ['filename',
+if __name__ == '__main__':
+    base_path = sys.argv[1]
+
+    summarizer = ResultsSummarizer(base_path)
+    aggregated_stats = summarizer.aggregate_similar_folders(summarizer.summarize_result_dirs())
+    #calculated_stats = summarizer.calculate_results(aggregated_stats)
+    #summarizer.print_stats(calculated_stats)
+    
+    key_order = ['filename',
                      'elapsed',
                      'n',
                      'min',
@@ -262,15 +258,13 @@ class ResultsSummarizer(object):
                      'errors',
                      'mean_ops/sec',
                      'mean_ops/sec_std_dev']
-        print ','.join(key_order)
-        
-        for stat in sorted(stats,key=itemgetter('filename')):
+
+    print ','.join(key_order)
+    
+    for stat in sorted(summarizer.calculate_results(aggregated_stats),key=itemgetter('filename')):
+        if (stat['filename'].rfind('cluster') >= 0):
             print ','.join([str(stat[key]) for key in key_order])
-
-if __name__ == '__main__':
-    base_path = sys.argv[1]
-
-    summarizer = ResultsSummarizer(base_path)
-    aggregated_stats = summarizer.aggregate_similar_folders(summarizer.summarize_result_dirs())
-    calculated_stats = summarizer.calculate_results(aggregated_stats)
-    summarizer.print_stats(calculated_stats)
+    
+    for stat in sorted(summarizer.calculate_results(aggregated_stats),key=itemgetter('filename')):
+        if (stat['filename'].rfind('cluster') < 0):
+            print ','.join([str(stat[key]) for key in key_order])
