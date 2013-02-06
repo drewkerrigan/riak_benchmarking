@@ -281,27 +281,47 @@ if __name__ == '__main__':
     #calculated_stats = summarizer.calculate_results(aggregated_stats)
     #summarizer.print_stats(calculated_stats)
     
-    key_order = [    'name',
-                     'elapsed',
-                     'n',
-                     'min',
-                     'mean',
-                     'mean_std_dev',
-                     'median',
-                     '95',
-                     '99',
-                     '99.9',
-                     'max',
-                     'errors',
-                     'mean_ops/sec',
-                     'mean_ops/sec_std_dev']
+    key_order = ['name',
+                 'elapsed',
+                 'n',
+                 'min',
+                 'mean',
+                 'mean_std_dev',
+                 'median',
+                 '95',
+                 '99',
+                 '99.9',
+                 'max',
+                 'errors',
+                 'mean_ops/sec',
+                 'mean_ops/sec_std_dev']
 
     print ','.join(key_order)
     
     for stat in sorted(summarizer.calculate_results(aggregated_stats),key=itemgetter('name')):
-        #if (stat['filename'].rfind('2013') >= 0):
         print ','.join([str(stat[key]) for key in key_order])
+
+    print " "
+    print " "
+    print " "
     
-#    for stat in sorted(summarizer.calculate_results(aggregated_stats),key=itemgetter('filename')):
-#        if (stat['filename'].rfind('2013') < 0):
-#            print ','.join([str(stat[key]) for key in key_order])
+    summary_results = {}
+    for stat in sorted(summarizer.calculate_results(aggregated_stats),key=itemgetter('name')):
+        name = stat['name']
+        ind = name.rfind('rollup')
+        if (ind >= 0):
+            ind121 = name.rfind(' (1.2.1')
+            ind13 = name.rfind(' (1.3')
+            if (ind121 >= 0):
+                summary_results[name[:ind121]] = []
+                summary_results[name[:ind121]].append(stat['mean'])
+            elif (ind13 >= 0):
+                summary_results[name[:ind13]].append(stat['mean'])
+                
+    print "Name,1.2.1 Mean Latency,1.3 Mean Latency"
+    
+    for name, result in sorted(summary_results.items()):
+        line = re.sub('rollup ', '', name) + "," + str(result[0]) + ","
+        if 1 < len(result):
+            line += str(result[1])
+        print line
