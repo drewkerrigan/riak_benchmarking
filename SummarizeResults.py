@@ -1,4 +1,4 @@
-import os, sys, csv, glob
+import os, sys, csv, glob, re
 
 __author__ = 'dankerrigan'
 
@@ -107,7 +107,7 @@ class Summary:
 
 class ResultsSummarizer(object):
     _results_path = None
-    _latency_summary_fields = ['elapsed','n','min','mean','median','95','99','99.9','max','errors','ops/sec']
+    _latency_summary_fields = ['filename','elapsed','n','min','mean','median','95','99','99.9','max','errors','ops/sec']
 
     def __init__(self, results_path):
         self._results_path = results_path
@@ -131,6 +131,7 @@ class ResultsSummarizer(object):
                 row = map(str.strip, row)
                 vals = map(float, row)
                 elapsed, window, n, min, mean, median, nine5, nine9, nine9_9, max, errors = vals[:11]
+                summary_dict['filename'] = filename
                 summary_dict['elapsed'].add(elapsed)
                 summary_dict['n'].add(n)
                 summary_dict['min'].add(min/1000)
@@ -164,6 +165,24 @@ class ResultsSummarizer(object):
                 count += 1
 
         return avg_agg/count
+    
+    def simplify_filename(self, filename):
+        matchObj = re.match( r'results\/baseline_(.*)-(.*)-(.*)\/(.*)\/(.*)\/(.*)_latencies.csv', filename, re.M|re.I)
+        
+        if matchObj:
+            protocol = matchObj.group(1)
+            version = matchObj.group(2)
+            backend = matchObj.group(3)
+            
+            if (matchObj.group(4) == "tag_RiakServers_cluster1"):
+                cluster = "AWS"
+            else:
+                cluster = "SL"
+            timestamp = matchObj.group(5)
+            operation = matchObj.group(6)
+            return protocol + " " + backend + " " + version + " " + cluster + " " + operation + " TS:" + timestamp
+        else:
+            return filename
 
     def summarize_basho_bench_results(self, path):
         latency_wc = '*latencies.csv'
@@ -173,6 +192,7 @@ class ResultsSummarizer(object):
         for latency_file in files:
             latency_stat = self.summarize_basho_bench_latency(latency_file)
             if len(latency_stat) != 0:
+                latency_stat['name'] = self.simplify_filename(latency_file)
                 latency_stat['filename'] = latency_file
                 yield latency_stat
     
@@ -199,22 +219,38 @@ class ResultsSummarizer(object):
     def aggregate_similar_folders(self, stats):
         aggregated_stats = {}
         for stat in stats:
-            filename = stat['filename']
+            name = stat['name']
 
-            aggregated_stats[filename] = stat
-            path, filename = os.path.split(filename)
-            ind = path.rfind('tag_')
-            group_path = path[:ind]
+            aggregated_stats[name] = stat
+            #path, filename = os.path.split(filename)
+            ind = name.rfind('TS:')
+            group_path = name[:ind]
             agg_stat = aggregated_stats.get(group_path, self._create_latency_summary_dict())
             agg_stat = self._add_summary_dicts(agg_stat, stat)
-            aggregated_stats[group_path] = agg_stat
+            agg_stat['filename'] = "rollup"
+            aggregated_stats["rollup " + group_path] = agg_stat
 
         return aggregated_stats
 
+#        aggregated_stats = {}
+#        for stat in stats:
+#            filename = stat['filename']
+#
+#            aggregated_stats[filename] = stat
+#            path, filename = os.path.split(filename)
+#            ind = path.rfind('2013')
+#            group_path = path[:ind]
+#            agg_stat = aggregated_stats.get(group_path, self._create_latency_summary_dict())
+#            agg_stat = self._add_summary_dicts(agg_stat, stat)
+#            aggregated_stats[group_path] = agg_stat
+#
+#        return aggregated_stats
+
     def calculate_results(self, summary_stats):
-        for filename, summary_stat in summary_stats.items():
+        for name, summary_stat in summary_stats.items():
             stat = {}
-            stat['filename'] = filename
+            stat['name'] = name
+            stat['filename'] = summary_stat['filename']
             stat['elapsed'] = summary_stat['elapsed'].max()
             stat['n'] = summary_stat['n'].sum_values()
             stat['min'] = summary_stat['min'].min()
@@ -233,7 +269,8 @@ class ResultsSummarizer(object):
 
     def _add_summary_dicts(self, dict1, dict2):
         for field in self._latency_summary_fields:
-            dict1[field].add_summary(dict2[field])
+            if field != "filename":
+                dict1[field].add_summary(dict2[field]) 
         return dict1
 
 if __name__ == '__main__':
@@ -244,7 +281,7 @@ if __name__ == '__main__':
     #calculated_stats = summarizer.calculate_results(aggregated_stats)
     #summarizer.print_stats(calculated_stats)
     
-    key_order = ['filename',
+    key_order = [    'name',
                      'elapsed',
                      'n',
                      'min',
@@ -261,10 +298,10 @@ if __name__ == '__main__':
 
     print ','.join(key_order)
     
-    for stat in sorted(summarizer.calculate_results(aggregated_stats),key=itemgetter('filename')):
-        if (stat['filename'].rfind('cluster') >= 0):
-            print ','.join([str(stat[key]) for key in key_order])
+    for stat in sorted(summarizer.calculate_results(aggregated_stats),key=itemgetter('name')):
+        #if (stat['filename'].rfind('2013') >= 0):
+        print ','.join([str(stat[key]) for key in key_order])
     
-    for stat in sorted(summarizer.calculate_results(aggregated_stats),key=itemgetter('filename')):
-        if (stat['filename'].rfind('cluster') < 0):
-            print ','.join([str(stat[key]) for key in key_order])
+#    for stat in sorted(summarizer.calculate_results(aggregated_stats),key=itemgetter('filename')):
+#        if (stat['filename'].rfind('2013') < 0):
+#            print ','.join([str(stat[key]) for key in key_order])
