@@ -180,7 +180,7 @@ class ResultsSummarizer(object):
                 cluster = "SL"
             timestamp = matchObj.group(5)
             operation = matchObj.group(6)
-            return protocol + " " + backend + " " + version + " " + cluster + " " + operation + " TS:" + timestamp
+            return "[" + cluster + "] " + protocol + "." + backend + "." + operation + " (" + version + ") TS:" + timestamp
         else:
             return filename
 
