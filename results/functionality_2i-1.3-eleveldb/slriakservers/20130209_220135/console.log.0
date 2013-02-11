@@ -1,0 +1,55 @@
+2013-02-09 22:01:35.233 [debug] <0.43.0> Lager installed handler {lager_file_backend,"/opt/bashobench/tests/20130209_220135/console.log"} into lager_event
+2013-02-09 22:01:35.236 [debug] <0.45.0> Lager installed handler error_logger_lager_h into error_logger
+2013-02-09 22:01:35.236 [info] <0.6.0> Application lager started on node nonode@nohost
+2013-02-09 22:01:35.239 [info] <0.2.0>@basho_bench:log_dimensions:238 Est. data size: 0.00 bytes
+2013-02-09 22:01:35.258 [debug] <0.52.0> Supervisor sasl_safe_sup started alarm_handler:start_link() at pid <0.53.0>
+2013-02-09 22:01:35.258 [debug] <0.52.0> Supervisor sasl_safe_sup started overload:start_link() at pid <0.54.0>
+2013-02-09 22:01:35.259 [debug] <0.51.0> Supervisor sasl_sup started supervisor:start_link({local,sasl_safe_sup}, sasl, safe) at pid <0.52.0>
+2013-02-09 22:01:35.259 [debug] <0.51.0> Supervisor sasl_sup started release_handler:start_link() at pid <0.55.0>
+2013-02-09 22:01:35.259 [info] <0.6.0> Application sasl started on node nonode@nohost
+2013-02-09 22:01:35.268 [debug] <0.60.0> Supervisor crypto_sup started crypto_server:start_link() at pid <0.61.0>
+2013-02-09 22:01:35.269 [info] <0.6.0> Application crypto started on node nonode@nohost
+2013-02-09 22:01:35.273 [debug] <0.70.0> Supervisor folsom_sup started folsom_sample_slide_sup:start_link() at pid <0.71.0>
+2013-02-09 22:01:35.274 [debug] <0.70.0> Supervisor folsom_sup started folsom_meter_timer_server:start_link() at pid <0.72.0>
+2013-02-09 22:01:35.275 [debug] <0.70.0> Supervisor folsom_sup started folsom_metrics_histogram_ets:start_link() at pid <0.73.0>
+2013-02-09 22:01:35.275 [info] <0.6.0> Application folsom started on node nonode@nohost
+2013-02-09 22:01:35.281 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_stats:start_link() at pid <0.66.0>
+2013-02-09 22:01:35.282 [debug] <0.77.0>@basho_bench_valgen:init_source:73 random source
+2013-02-09 22:01:35.323 [debug] <0.83.0> Supervisor ibrowse_sup started ibrowse:start_link() at pid <0.84.0>
+2013-02-09 22:01:35.324 [info] <0.6.0> Application ibrowse started on node nonode@nohost
+2013-02-09 22:01:35.324 [info] <0.79.0>@basho_bench_driver_2i:new:62 Using http target "127.0.0.1":8098 for worker 1
+2013-02-09 22:01:35.325 [info] <0.79.0>@basho_bench_driver_2i:new:68 Using pb target "10.90.18.144":8087 for worker 1
+2013-02-09 22:01:35.332 [debug] <0.87.0> Supervisor inet_gethost_native_sup started undefined at pid <0.88.0>
+2013-02-09 22:01:35.332 [debug] <0.24.0> Supervisor kernel_safe_sup started inet_gethost_native:start_link() at pid <0.87.0>
+2013-02-09 22:01:35.335 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_worker:start_link(basho_bench_worker_1, 1) at pid <0.77.0>
+2013-02-09 22:01:35.367 [info] <0.90.0>@basho_bench_driver_2i:new:62 Using http target "127.0.0.1":8098 for worker 2
+2013-02-09 22:01:35.367 [info] <0.90.0>@basho_bench_driver_2i:new:68 Using pb target "10.90.18.142":8087 for worker 2
+2013-02-09 22:01:35.369 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_worker:start_link(basho_bench_worker_2, 2) at pid <0.89.0>
+2013-02-09 22:01:35.400 [info] <0.93.0>@basho_bench_driver_2i:new:62 Using http target "127.0.0.1":8098 for worker 3
+2013-02-09 22:01:35.400 [info] <0.93.0>@basho_bench_driver_2i:new:68 Using pb target "10.90.18.140":8087 for worker 3
+2013-02-09 22:01:35.401 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_worker:start_link(basho_bench_worker_3, 3) at pid <0.92.0>
+2013-02-09 22:01:35.435 [info] <0.96.0>@basho_bench_driver_2i:new:62 Using http target "127.0.0.1":8098 for worker 4
+2013-02-09 22:01:35.435 [info] <0.96.0>@basho_bench_driver_2i:new:68 Using pb target "10.90.18.148":8087 for worker 4
+2013-02-09 22:01:35.436 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_worker:start_link(basho_bench_worker_4, 4) at pid <0.95.0>
+2013-02-09 22:01:35.470 [info] <0.99.0>@basho_bench_driver_2i:new:62 Using http target "127.0.0.1":8098 for worker 5
+2013-02-09 22:01:35.470 [info] <0.99.0>@basho_bench_driver_2i:new:68 Using pb target "10.90.18.146":8087 for worker 5
+2013-02-09 22:01:35.471 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_worker:start_link(basho_bench_worker_5, 5) at pid <0.98.0>
+2013-02-09 22:01:35.504 [info] <0.102.0>@basho_bench_driver_2i:new:62 Using http target "127.0.0.1":8098 for worker 6
+2013-02-09 22:01:35.504 [info] <0.102.0>@basho_bench_driver_2i:new:68 Using pb target "10.90.18.144":8087 for worker 6
+2013-02-09 22:01:35.505 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_worker:start_link(basho_bench_worker_6, 6) at pid <0.101.0>
+2013-02-09 22:01:35.539 [info] <0.105.0>@basho_bench_driver_2i:new:62 Using http target "127.0.0.1":8098 for worker 7
+2013-02-09 22:01:35.539 [info] <0.105.0>@basho_bench_driver_2i:new:68 Using pb target "10.90.18.142":8087 for worker 7
+2013-02-09 22:01:35.540 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_worker:start_link(basho_bench_worker_7, 7) at pid <0.104.0>
+2013-02-09 22:01:35.572 [info] <0.108.0>@basho_bench_driver_2i:new:62 Using http target "127.0.0.1":8098 for worker 8
+2013-02-09 22:01:35.572 [info] <0.108.0>@basho_bench_driver_2i:new:68 Using pb target "10.90.18.140":8087 for worker 8
+2013-02-09 22:01:35.573 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_worker:start_link(basho_bench_worker_8, 8) at pid <0.107.0>
+2013-02-09 22:01:35.573 [debug] <0.24.0> Supervisor kernel_safe_sup started timer:start_link() at pid <0.110.0>
+2013-02-09 22:01:35.574 [info] <0.108.0>@basho_bench_worker:worker_idle_loop:213 Starting max worker: <0.108.0>
+2013-02-09 22:01:35.574 [info] <0.105.0>@basho_bench_worker:worker_idle_loop:213 Starting max worker: <0.105.0>
+2013-02-09 22:01:35.574 [info] <0.102.0>@basho_bench_worker:worker_idle_loop:213 Starting max worker: <0.102.0>
+2013-02-09 22:01:35.574 [info] <0.99.0>@basho_bench_worker:worker_idle_loop:213 Starting max worker: <0.99.0>
+2013-02-09 22:01:35.574 [info] <0.96.0>@basho_bench_worker:worker_idle_loop:213 Starting max worker: <0.96.0>
+2013-02-09 22:01:35.575 [info] <0.93.0>@basho_bench_worker:worker_idle_loop:213 Starting max worker: <0.93.0>
+2013-02-09 22:01:35.575 [info] <0.90.0>@basho_bench_worker:worker_idle_loop:213 Starting max worker: <0.90.0>
+2013-02-09 22:01:35.575 [info] <0.79.0>@basho_bench_worker:worker_idle_loop:213 Starting max worker: <0.79.0>
+2013-02-09 22:01:35.575 [info] <0.6.0> Application basho_bench started on node nonode@nohost

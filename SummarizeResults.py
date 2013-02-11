@@ -167,20 +167,21 @@ class ResultsSummarizer(object):
         return avg_agg/count
     
     def simplify_filename(self, filename):
-        matchObj = re.match( r'results\/baseline_(.*)-(.*)-(.*)\/(.*)\/(.*)\/(.*)_latencies.csv', filename, re.M|re.I)
+        matchObj = re.match( r'results\/(.*)_(.*)-(.*)-(.*)\/(.*)\/(.*)\/(.*)_latencies.csv', filename, re.M|re.I)
         
         if matchObj:
-            protocol = matchObj.group(1)
-            version = matchObj.group(2)
-            backend = matchObj.group(3)
+            type = matchObj.group(1)
+            protocol = matchObj.group(2)
+            version = matchObj.group(3)
+            backend = matchObj.group(4)
             
-            if (matchObj.group(4) == "tag_RiakServers_cluster1"):
+            if (matchObj.group(5) == "tag_RiakServers_cluster1"):
                 cluster = "AWS"
             else:
                 cluster = "SL"
-            timestamp = matchObj.group(5)
-            operation = matchObj.group(6)
-            return "[" + cluster + "] " + protocol + "." + backend + "." + operation + " (" + version + ") TS:" + timestamp
+            timestamp = matchObj.group(6)
+            operation = matchObj.group(7)
+            return "[" + cluster + "] " + type + " " + protocol + "." + backend + "." + operation + " (" + version + ") TS:" + timestamp
         else:
             return filename
 

@@ -1,0 +1,10 @@
+2013-02-08 00:49:31.935 [debug] <0.80.0>@basho_bench_worker:worker_next_op:257 Driver basho_bench_driver_2i crashed: {{case_clause,{{error,{timeout,[]}},undefined}},[{basho_bench_driver_2i,run,4},{basho_bench_worker,worker_next_op2,2},{basho_bench_worker,worker_next_op,1},{basho_bench_worker,max_worker_run_loop,1}]}
+2013-02-08 00:49:31.935 [error] <0.78.0>@basho_bench_worker:handle_info:141 Worker <0.80.0> exited with crash
+2013-02-08 00:49:31.946 [debug] <0.112.0>@basho_bench_valgen:init_source:73 random source
+2013-02-08 00:49:31.947 [error] <0.66.0> Supervisor basho_bench_sup had child basho_bench_worker_1 started with basho_bench_worker:start_link(basho_bench_worker_1, 1) at <0.78.0> exit with reason normal in context child_terminated
+2013-02-08 00:49:32.010 [info] <0.113.0>@basho_bench_driver_2i:new:62 Using http target "127.0.0.1":8098 for worker 1
+2013-02-08 00:49:32.010 [info] <0.113.0>@basho_bench_driver_2i:new:68 Using pb target "10.60.137.226":8087 for worker 1
+2013-02-08 00:49:32.011 [warning] <0.112.0>@basho_bench_worker:init:116 Restarting crashed worker.
+2013-02-08 00:49:32.011 [info] <0.113.0>@basho_bench_worker:worker_idle_loop:213 Starting max worker: <0.113.0>
+2013-02-08 00:49:32.012 [debug] <0.66.0> Supervisor basho_bench_sup started basho_bench_worker:start_link(basho_bench_worker_1, 1) at pid <0.112.0>
+2013-02-08 00:49:36.983 [info] <0.67.0>@basho_bench_stats:process_stats:274 Errors:[{{{query_pb,5},{query_pb,5}},1},{{{{query_pb,5},{query_pb,5}},crash},1}]
