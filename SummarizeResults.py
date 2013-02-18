@@ -52,7 +52,10 @@ class Summary:
 
     def median(self):
         center = self.count/2
-        return sorted([value * count for  value, count in self.values.items()])[center]
+        values = []
+        for key, value in self.values.items():
+            values.extend([key] * value)
+        return sorted(values)[center]
 
     def variance(self):
         mu = self.mean()
