@@ -51,7 +51,7 @@ class Summary:
         return float(numerator)/float(self.count)
 
     def median(self):
-        center = len(self.values.items())/2
+        center = self.count/2
         return sorted([value * count for  value, count in self.values.items()])[center]
 
     def variance(self):
@@ -167,20 +167,20 @@ class ResultsSummarizer(object):
         return avg_agg/count
     
     def simplify_filename(self, filename):
-        matchObj = re.match( r'results\/(.*)_(.*)-(.*)-(.*)\/(.*)\/(.*)\/(.*)_latencies.csv', filename, re.M|re.I)
+        matchObj = re.match( r'(.*)\/(.*)_(.*)-(.*)-(.*)\/(.*)\/(.*)\/(.*)_latencies.csv', filename, re.M|re.I)
         
         if matchObj:
-            type = matchObj.group(1)
-            protocol = matchObj.group(2)
-            version = matchObj.group(3)
-            backend = matchObj.group(4)
+            type = matchObj.group(2)
+            protocol = matchObj.group(3)
+            version = matchObj.group(4)
+            backend = matchObj.group(5)
             
-            if (matchObj.group(5) == "tag_RiakServers_cluster1"):
+            if (matchObj.group(6) == "tag_RiakServers_cluster1"):
                 cluster = "AWS"
             else:
                 cluster = "SL"
-            timestamp = matchObj.group(6)
-            operation = matchObj.group(7)
+            timestamp = matchObj.group(7)
+            operation = matchObj.group(8)
             return "[" + cluster + "] " + type + " " + protocol + "." + backend + "." + operation + " (" + version + ") TS:" + timestamp
         else:
             return filename
@@ -258,9 +258,9 @@ class ResultsSummarizer(object):
             stat['mean'] = summary_stat['mean'].mean()
             stat['mean_std_dev'] = summary_stat['mean'].stdev()
             stat['median'] = summary_stat['median'].median()
-            stat['95'] = summary_stat['95'].median()
-            stat['99'] = summary_stat['99'].median()
-            stat['99.9'] = summary_stat['99.9'].median()
+            stat['95'] = summary_stat['95'].mean()
+            stat['99'] = summary_stat['99'].mean()
+            stat['99.9'] = summary_stat['99.9'].mean()
             stat['max'] = summary_stat['max'].max()
             stat['errors'] = summary_stat['errors'].sum_values()
             stat['mean_ops/sec'] = summary_stat['ops/sec'].mean()
