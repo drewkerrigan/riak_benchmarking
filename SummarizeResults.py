@@ -180,8 +180,10 @@ class ResultsSummarizer(object):
             
             if (matchObj.group(6) == "tag_RiakServers_cluster1"):
                 cluster = "AWS"
+            elif (matchObj.group(6) == "slsmallriakservers"):
+                cluster = "SLsm"
             else:
-                cluster = "SL"
+                cluster = "SLmd"
             timestamp = matchObj.group(7)
             operation = matchObj.group(8)
             return "[" + cluster + "] " + type + " " + protocol + "." + backend + "." + operation + " (" + version + ") TS:" + timestamp
