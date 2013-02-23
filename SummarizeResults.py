@@ -284,7 +284,6 @@ def get_stat_name(filename):    #results/mdc-repl-1.3.0rc4/aws_benchmark/2013022
     if matchObj:
         
         return "[AWS] functionality_mdc-repl (" + matchObj.group(3) + ") TS:" + matchObj.group(4)
-        return group + "." + stat
     else:
         return filename
 
