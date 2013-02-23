@@ -279,6 +279,15 @@ class ResultsSummarizer(object):
                 dict1[field].add_summary(dict2[field]) 
         return dict1
 
+def get_stat_name(filename):    #results/mdc-repl-1.3.0rc4/aws_benchmark/20130220-172524/mdc_results.csv
+    matchObj = re.match( r'results\/(.*)-(.*)-(.*)\/aws_benchmark\/(.*)\/mdc_results.csv', filename, re.M|re.I)
+    if matchObj:
+        
+        return "[AWS] functionality_mdc-repl (" + matchObj.group(3) + ") TS:" + matchObj.group(4)
+        return group + "." + stat
+    else:
+        return filename
+
 if __name__ == '__main__':
     base_path = sys.argv[1]
 
@@ -331,3 +340,14 @@ if __name__ == '__main__':
         if 1 < len(result):
             line += str(result[1])
         print line
+        
+        
+        
+        
+
+    mdc_files = glob.glob(sys.argv[1] + '/*/*/*/mdc_results.csv')
+    for stat_file in mdc_files:
+        with open(stat_file, 'rb') as summary_file:
+            reader = csv.reader(summary_file)
+            for row in reader:
+                print get_stat_name(stat_file) + "," + row[0]
