@@ -1,0 +1,55 @@
+2013-02-08 08:30:51.552 [debug] <0.43.0> Lager installed handler {lager_file_backend,"/opt/bashobench/tests/20130208_083051/console.log"} into lager_event
+2013-02-08 08:30:51.554 [debug] <0.45.0> Lager installed handler error_logger_lager_h into error_logger
+2013-02-08 08:30:51.554 [info] <0.6.0> Application lager started on node nonode@nohost
+2013-02-08 08:30:51.558 [info] <0.2.0>@basho_bench:log_dimensions:238 Est. data size: 0.00 bytes
+2013-02-08 08:30:51.576 [debug] <0.52.0> Supervisor sasl_safe_sup started alarm_handler:start_link() at pid <0.53.0>
+2013-02-08 08:30:51.577 [debug] <0.52.0> Supervisor sasl_safe_sup started overload:start_link() at pid <0.54.0>
+2013-02-08 08:30:51.577 [debug] <0.51.0> Supervisor sasl_sup started supervisor:start_link({local,sasl_safe_sup}, sasl, safe) at pid <0.52.0>
+2013-02-08 08:30:51.578 [debug] <0.51.0> Supervisor sasl_sup started release_handler:start_link() at pid <0.55.0>
+2013-02-08 08:30:51.578 [info] <0.6.0> Application sasl started on node nonode@nohost
+2013-02-08 08:30:51.587 [debug] <0.60.0> Supervisor crypto_sup started crypto_server:start_link() at pid <0.61.0>
+2013-02-08 08:30:51.587 [info] <0.6.0> Application crypto started on node nonode@nohost
+2013-02-08 08:30:51.593 [debug] <0.70.0> Supervisor folsom_sup started folsom_sample_slide_sup:start_link() at pid <0.71.0>
+2013-02-08 08:30:51.593 [debug] <0.70.0> Supervisor folsom_sup started folsom_meter_timer_server:start_link() at pid <0.72.0>
+2013-02-08 08:30:51.594 [debug] <0.70.0> Supervisor folsom_sup started folsom_metrics_histogram_ets:start_link() at pid <0.73.0>
+2013-02-08 08:30:51.595 [info] <0.6.0> Application folsom started on node nonode@nohost
+2013-02-08 08:30:51.600 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_stats:start_link() at pid <0.66.0>
+2013-02-08 08:30:51.601 [debug] <0.76.0>@basho_bench_valgen:init_source:73 random source
+2013-02-08 08:30:51.643 [debug] <0.78.0>@basho_bench_driver_http_raw:new:74 Client ID: {'X-Riak-ClientId',<<"AAAAAQ==">>}
+2013-02-08 08:30:51.643 [info] <0.78.0>@basho_bench_driver_http_raw:new:75 CWD: {ok,"/opt/bashobench/tests/20130208_083051"}
+2013-02-08 08:30:51.647 [debug] <0.82.0> Supervisor ibrowse_sup started ibrowse:start_link() at pid <0.83.0>
+2013-02-08 08:30:51.648 [info] <0.6.0> Application ibrowse started on node nonode@nohost
+2013-02-08 08:30:51.648 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_worker:start_link(basho_bench_worker_1, 1) at pid <0.76.0>
+2013-02-08 08:30:51.680 [debug] <0.86.0>@basho_bench_driver_http_raw:new:74 Client ID: {'X-Riak-ClientId',<<"AAAAAg==">>}
+2013-02-08 08:30:51.680 [info] <0.86.0>@basho_bench_driver_http_raw:new:75 CWD: {ok,"/opt/bashobench/tests/20130208_083051"}
+2013-02-08 08:30:51.681 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_worker:start_link(basho_bench_worker_2, 2) at pid <0.85.0>
+2013-02-08 08:30:51.713 [debug] <0.88.0>@basho_bench_driver_http_raw:new:74 Client ID: {'X-Riak-ClientId',<<"AAAAAw==">>}
+2013-02-08 08:30:51.713 [info] <0.88.0>@basho_bench_driver_http_raw:new:75 CWD: {ok,"/opt/bashobench/tests/20130208_083051"}
+2013-02-08 08:30:51.714 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_worker:start_link(basho_bench_worker_3, 3) at pid <0.87.0>
+2013-02-08 08:30:51.747 [debug] <0.90.0>@basho_bench_driver_http_raw:new:74 Client ID: {'X-Riak-ClientId',<<"AAAABA==">>}
+2013-02-08 08:30:51.747 [info] <0.90.0>@basho_bench_driver_http_raw:new:75 CWD: {ok,"/opt/bashobench/tests/20130208_083051"}
+2013-02-08 08:30:51.747 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_worker:start_link(basho_bench_worker_4, 4) at pid <0.89.0>
+2013-02-08 08:30:51.780 [debug] <0.92.0>@basho_bench_driver_http_raw:new:74 Client ID: {'X-Riak-ClientId',<<"AAAABQ==">>}
+2013-02-08 08:30:51.780 [info] <0.92.0>@basho_bench_driver_http_raw:new:75 CWD: {ok,"/opt/bashobench/tests/20130208_083051"}
+2013-02-08 08:30:51.781 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_worker:start_link(basho_bench_worker_5, 5) at pid <0.91.0>
+2013-02-08 08:30:51.813 [debug] <0.94.0>@basho_bench_driver_http_raw:new:74 Client ID: {'X-Riak-ClientId',<<"AAAABg==">>}
+2013-02-08 08:30:51.813 [info] <0.94.0>@basho_bench_driver_http_raw:new:75 CWD: {ok,"/opt/bashobench/tests/20130208_083051"}
+2013-02-08 08:30:51.814 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_worker:start_link(basho_bench_worker_6, 6) at pid <0.93.0>
+2013-02-08 08:30:51.846 [debug] <0.96.0>@basho_bench_driver_http_raw:new:74 Client ID: {'X-Riak-ClientId',<<"AAAABw==">>}
+2013-02-08 08:30:51.847 [info] <0.96.0>@basho_bench_driver_http_raw:new:75 CWD: {ok,"/opt/bashobench/tests/20130208_083051"}
+2013-02-08 08:30:51.847 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_worker:start_link(basho_bench_worker_7, 7) at pid <0.95.0>
+2013-02-08 08:30:51.880 [debug] <0.98.0>@basho_bench_driver_http_raw:new:74 Client ID: {'X-Riak-ClientId',<<"AAAACA==">>}
+2013-02-08 08:30:51.880 [info] <0.98.0>@basho_bench_driver_http_raw:new:75 CWD: {ok,"/opt/bashobench/tests/20130208_083051"}
+2013-02-08 08:30:51.881 [debug] <0.65.0> Supervisor basho_bench_sup started basho_bench_worker:start_link(basho_bench_worker_8, 8) at pid <0.97.0>
+2013-02-08 08:30:51.881 [debug] <0.24.0> Supervisor kernel_safe_sup started timer:start_link() at pid <0.99.0>
+2013-02-08 08:30:51.882 [info] <0.98.0>@basho_bench_worker:worker_idle_loop:213 Starting max worker: <0.98.0>
+2013-02-08 08:30:51.882 [info] <0.96.0>@basho_bench_worker:worker_idle_loop:213 Starting max worker: <0.96.0>
+2013-02-08 08:30:51.882 [info] <0.94.0>@basho_bench_worker:worker_idle_loop:213 Starting max worker: <0.94.0>
+2013-02-08 08:30:51.882 [info] <0.92.0>@basho_bench_worker:worker_idle_loop:213 Starting max worker: <0.92.0>
+2013-02-08 08:30:51.882 [info] <0.90.0>@basho_bench_worker:worker_idle_loop:213 Starting max worker: <0.90.0>
+2013-02-08 08:30:51.882 [info] <0.88.0>@basho_bench_worker:worker_idle_loop:213 Starting max worker: <0.88.0>
+2013-02-08 08:30:51.882 [info] <0.86.0>@basho_bench_worker:worker_idle_loop:213 Starting max worker: <0.86.0>
+2013-02-08 08:30:51.882 [info] <0.78.0>@basho_bench_worker:worker_idle_loop:213 Starting max worker: <0.78.0>
+2013-02-08 08:30:51.883 [info] <0.6.0> Application basho_bench started on node nonode@nohost
+2013-02-08 08:30:51.895 [debug] <0.108.0> Supervisor inet_gethost_native_sup started undefined at pid <0.109.0>
+2013-02-08 08:30:51.895 [debug] <0.24.0> Supervisor kernel_safe_sup started inet_gethost_native:start_link() at pid <0.108.0>
